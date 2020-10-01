@@ -91,8 +91,7 @@ class PlacesListController : UIViewController, UITableViewDataSource, UITableVie
         }
         override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
             super.init(style: style, reuseIdentifier: reuseIdentifier)
-            title = UILabel(frame:.zero)
-            title.font = UIFont.systemFont(ofSize: 26)
+            title = UILabel(fontSize: 26)
             activate([title.centerY(self),title.start(leadingAnchor,20)])
         }
         required init?(coder: NSCoder) {
