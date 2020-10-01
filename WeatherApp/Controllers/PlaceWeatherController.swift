@@ -14,7 +14,6 @@ class PlaceWeatherController : UIViewController, UIGestureRecognizerDelegate {
     internal var mainTitle, subtitle, temperature : UILabel!
     internal var keepPlaceButton : UIButton!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = isDarkMode ? .black : .white
@@ -35,12 +34,9 @@ class PlaceWeatherController : UIViewController, UIGestureRecognizerDelegate {
         keepPlaceButton.layer.borderWidth = 1
         keepPlaceButton.layer.borderColor = isDarkMode ? UIColor.white.withAlphaComponent(0.7).cgColor : UIColor.black.withAlphaComponent(0.7).cgColor
         keepPlaceButton.layer.cornerRadius = 20
-        keepPlaceButton.isUserInteractionEnabled = true
         keepPlaceButton.contentEdgeInsets = UIEdgeInsets(top: 12, left: 24, bottom: 12, right: 24)
         
-        let keepPlaceGesture = UITapGestureRecognizer(target: self, action: #selector(keepPlaceClicked))
-        keepPlaceGesture.delegate = self
-        keepPlaceButton.addGestureRecognizer(keepPlaceGesture)
+        keepPlaceButton.clicked(self, #selector(keepPlaceClicked))
         keepPlaceButton.setTitle("Add to Saved List", for: UIControl.State.normal)
         
         mainTitle.text = "\(placeMark.locality!), \(placeMark.country!)"

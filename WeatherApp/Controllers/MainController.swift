@@ -17,26 +17,19 @@ class MainController: UIViewController, UIGestureRecognizerDelegate{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         geocoder = CLGeocoder()
         mapView = MKMapView(frame: CGRect.zero)
-        
         listIcon = UIImageView(image:UIImage(named: "list"))
-        listIcon.contentMode = .scaleAspectFit
-
         helpIcon = UIImageView(image:UIImage(named: "information"))
-        helpIcon.contentMode = .scaleAspectFit
 
         view.activate([mapView.start(view.leadingAnchor),
                        mapView.end(view.trailingAnchor),
                        mapView.top(view.topAnchor),
                        mapView.bottom(view.bottomAnchor)])
-        
         view.activate([listIcon.bottom(view.safeAreaLayoutGuide.bottomAnchor, -20),
                        listIcon.end(view.safeAreaLayoutGuide.trailingAnchor, -20),
                        listIcon.height(48),
                        listIcon.width(48)])
-        
         view.activate([helpIcon.bottom(view.safeAreaLayoutGuide.bottomAnchor, -20),
                        helpIcon.end(listIcon.leadingAnchor, -20),
                        helpIcon.height(48),
@@ -46,8 +39,6 @@ class MainController: UIViewController, UIGestureRecognizerDelegate{
         listIcon.clicked(self, #selector(handleListClick))
         helpIcon.clicked(self, #selector(handleHelpClicked))
     }
-    
-    
     @objc func handleHelpClicked(gestureRecognizer : UITapGestureRecognizer){
         self.present(HelpController(), animated: true, completion: nil)
     }
@@ -84,7 +75,6 @@ class MainController: UIViewController, UIGestureRecognizerDelegate{
                 self.showError("Couldn't find weather for the area")
                 return
             }
-            
             if place.locality != nil{
                 let placeViewController = PlaceWeatherController()
                 placeViewController.placeMark = place
@@ -94,7 +84,6 @@ class MainController: UIViewController, UIGestureRecognizerDelegate{
                 self.present(placeViewController, animated: true, completion: nil)
                 return
             }
-            
         }
     }
     func showError(_ errorMsg : String = "Something went wrong, please try again"){

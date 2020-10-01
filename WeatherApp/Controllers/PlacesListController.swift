@@ -39,12 +39,9 @@ class PlacesListController : UIViewController, UITableViewDataSource, UITableVie
     @objc func segmentAction(_ segmentedControl: UISegmentedControl) {
         PlacesManager.shared.unit = segmentedControl.selectedSegmentIndex
     }
-    
     func setupList(){
         tableView = UITableView(frame: .zero, style: .plain)
         tableView.delegate = self
-        tableView.backgroundColor = .clear
-        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         tableView.register(PlaceCell.self, forCellReuseIdentifier: "PlaceCell")
         tableView.dataSource = self
         view.activate([tableView.start(view.safeAreaLayoutGuide.leadingAnchor),tableView.end(view.trailingAnchor),
@@ -98,7 +95,6 @@ class PlacesListController : UIViewController, UITableViewDataSource, UITableVie
             title.font = UIFont.systemFont(ofSize: 26)
             activate([title.centerY(self),title.start(leadingAnchor,20)])
         }
-        
         required init?(coder: NSCoder) {
             fatalError("init(coder:) has not been implemented")
         }
