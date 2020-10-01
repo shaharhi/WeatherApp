@@ -8,7 +8,7 @@
 import Foundation
 class WeatherAPI {
     
-    static let apiKey = "0b58f08ef80627a81d394308d9e58d3c"
+    static let apiKey = "c6e381d8c7ff98f0fee43775817cf6ad"
     static let host = "https://api.openweathermap.org/data/2.5/weather"
     static func getWeatherFor(cityName : String, callback : @escaping ((String?, Info?) -> Void)) {
         let escapedCity = cityName.addingPercentEncoding(withAllowedCharacters: .urlUserAllowed)!

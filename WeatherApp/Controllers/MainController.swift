@@ -11,6 +11,7 @@ import MapKit
 class MainController: UIViewController, UIGestureRecognizerDelegate{
 
     private var mapView: MKMapView!
+    private var iconsStack : UIStackView!
     private var listIcon,helpIcon : UIImageView!
     private var shownAnnotation : MKPointAnnotation!
     private var geocoder : CLGeocoder!
@@ -21,19 +22,18 @@ class MainController: UIViewController, UIGestureRecognizerDelegate{
         mapView = MKMapView(frame: CGRect.zero)
         listIcon = UIImageView(image:UIImage(named: "list"))
         helpIcon = UIImageView(image:UIImage(named: "information"))
-
+        
+        iconsStack = UIStackView(arrangedSubviews: [helpIcon,listIcon])
+        iconsStack.activate([listIcon.height(60),listIcon.width(60)])
+        iconsStack.activate([helpIcon.height(60),helpIcon.width(60)])
+        
         view.activate([mapView.start(view.leadingAnchor),
                        mapView.end(view.trailingAnchor),
                        mapView.top(view.topAnchor),
                        mapView.bottom(view.bottomAnchor)])
-        view.activate([listIcon.bottom(view.safeAreaLayoutGuide.bottomAnchor, -20),
-                       listIcon.end(view.safeAreaLayoutGuide.trailingAnchor, -20),
-                       listIcon.height(48),
-                       listIcon.width(48)])
-        view.activate([helpIcon.bottom(view.safeAreaLayoutGuide.bottomAnchor, -20),
-                       helpIcon.end(listIcon.leadingAnchor, -20),
-                       helpIcon.height(48),
-                       helpIcon.width(48)])
+        view.activate([iconsStack.bottom(view.safeAreaLayoutGuide.bottomAnchor,-20),iconsStack.end(view.trailingAnchor, -20)])
+        iconsStack.axis = .horizontal
+        iconsStack.spacing = 10
         
         mapView.clicked(self, #selector(handleClick))
         listIcon.clicked(self, #selector(handleListClick))
